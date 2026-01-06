@@ -102,11 +102,13 @@ body {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-sm);
+    gap: 0.8rem;
+    /* Reduced from 1rem by 20% */
 }
 
 .nav-item {
-    padding: var(--spacing-sm);
+    padding: 0.8rem 1rem;
+    /* Reduced vertical padding from 1rem to 0.8rem */
     border-radius: var(--radius-md);
     cursor: pointer;
     transition: var(--transition);
