@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Account Manager</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="manifest" href="manifest.json">
+    <script>
+        // Early error catcher for mobile debugging
+        window.onerror = function (msg, url, lineNo, columnNo, error) {
+            const message = [
+                'ERROR: ' + msg,
+                'URL: ' + url,
+                'Line: ' + lineNo,
+                'Column: ' + columnNo,
+                'Error object: ' + JSON.stringify(error)
+            ].join('\n');
+            alert(message);
+            return false;
+        };
+        window.onunhandledrejection = function (event) {
+            alert('UNHANDLED PROMISE REJECTION: ' + event.reason);
+        };
+    </script>
+</head>
+
+<body>
+    <!-- Mobile Header -->
+    <header class="mobile-header">
+        <div class="brand">
+            <i class="fa-solid fa-wallet brand-icon"></i>
+            <span>PAM</span>
+        </div>
+        <button class="menu-toggle" id="menu-toggle">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+    </header>
+
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="brand">
+                <i class="fa-solid fa-wallet brand-icon"></i>
+                <span>PAM</span>
+            </div>
+
+            <ul class="nav-menu">
+                <li class="nav-item active" data-view="dashboard">
+                    <i class="fa-solid fa-chart-pie"></i>
+                    Dashboard
+                </li>
+                <li class="nav-item" data-view="income">
+                    <i class="fa-solid fa-money-bill-trend-up"></i>
+                    Income Sources
+                </li>
+                <li class="nav-item" data-view="expenses">
+                    <i class="fa-solid fa-receipt"></i>
+                    Expenses
+                </li>
+                <li class="nav-item" data-view="payments">
+                    <i class="fa-solid fa-clock"></i>
+                    Upcoming Payments
+                </li>
+                <li class="nav-item" data-view="renewals">
+                    <i class="fa-solid fa-bell"></i>
+                    Renewals
+                </li>
+                <li class="nav-item" data-view="reports">
+                    <i class="fa-solid fa-file-lines"></i>
+                    Reports
+                </li>
+                <li class="nav-item" data-view="todo">
+                    <i class="fa-solid fa-list-check"></i>
+                    To Do List
+                </li>
+                <li class="nav-item" data-view="diary">
+                    <i class="fa-solid fa-book"></i>
+                    Diary
+                </li>
+                <li class="nav-item" data-view="notepad">
+                    <i class="fa-solid fa-sticky-note"></i>
+                    Notepad
+                </li>
+                <li class="nav-item" data-view="settings" style="margin-top:auto">
+                    <i class="fa-solid fa-gear"></i>
+                    Settings
+                </li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Content will be injected by Renderers.js -->
+        </main>
+    </div>
+
+    <!-- Bottom Navigation (Mobile Only) -->
+    <nav class="bottom-nav">
+        <div class="bottom-nav-item active" data-view="dashboard">
+            <i class="fa-solid fa-chart-pie"></i>
+            <span>Dash</span>
+        </div>
+        <div class="bottom-nav-item" data-view="income">
+            <i class="fa-solid fa-money-bill-trend-up"></i>
+            <span>Income</span>
+        </div>
+        <div class="bottom-nav-item" data-view="expenses">
+            <i class="fa-solid fa-receipt"></i>
+            <span>Exp</span>
+        </div>
+        <div class="bottom-nav-item" data-view="reports">
+            <i class="fa-solid fa-file-lines"></i>
+            <span>Logs</span>
+        </div>
+    </nav>
+
+    <!-- Modals -->
+    <div id="modal-container"></div>
+
+    <!-- Scripts -->
+    <script src="js/config.js"></script>
+    <script src="js/store.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/renderers.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(reg => console.log('Service Worker registered'))
+                    .catch(err => console.log('Service Worker registration failed:', err));
+            });
+        }
+    </script>
+</body>
+
+</html>
